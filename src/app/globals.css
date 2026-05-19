@@ -11,33 +11,132 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-/* Dark scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+::selection { background: rgba(99,102,241,0.3); }
+
+[contenteditable="true"]:focus { outline: none; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
-::-webkit-scrollbar-track {
-  background: transparent;
+@keyframes dash {
+  to { stroke-dashoffset: -20; }
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
+/* ─── Canvas Node Content Styles ───────────────────────── */
+
+.cvn-node {
+  transition: box-shadow 0.2s;
+}
+.cvn-node:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3) !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+.cvn-node-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
 }
-
-/* Selection */
-::selection {
-  background: rgba(99, 102, 241, 0.3);
+.cvn-node-content th,
+.cvn-node-content td {
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 10px;
+  text-align: left;
 }
-
-/* Content editable focus */
-[contenteditable="true"]:focus {
-  outline: none;
+.cvn-node-content th {
+  background: rgba(255,255,255,0.05);
+  font-weight: 600;
+}
+.cvn-node-content pre {
+  background: rgba(0,0,0,0.3);
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  overflow-x: auto;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.cvn-node-content h3,
+.cvn-node-content h4 {
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+.cvn-node-content p {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.cvn-node-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.cvn-node-content li {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.cvn-node-content input,
+.cvn-node-content textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  color: inherit;
+  font-size: 13px;
+}
+.cvn-node-content button.cvn-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+.cvn-node-content .cvn-btn-primary {
+  background: #6366f1;
+  color: white;
+}
+.cvn-node-content .brain-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cvn-node-content .brain-avatar {
+  font-size: 28px;
+}
+.cvn-node-content .brain-status {
+  font-size: 12px;
+  opacity: 0.7;
+  margin: 4px 0 0 0;
+}
+.cvn-node-content .chart-placeholder,
+.cvn-node-content .image-placeholder,
+.cvn-node-content .iframe-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  opacity: 0.6;
+}
+.cvn-node-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cvn-node-content form label {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0.7;
 }

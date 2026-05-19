@@ -182,13 +182,7 @@ export default function CanvasEdges({ containerRef }: CanvasEdgesProps) {
         );
       })}
 
-      <style jsx>{`
-        @keyframes dash {
-          to {
-            stroke-dashoffset: -20;
-          }
-        }
-      `}</style>
+      {/* dash animation defined in globals.css */}
     </svg>
   );
 }
